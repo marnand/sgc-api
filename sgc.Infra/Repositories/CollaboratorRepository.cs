@@ -34,9 +34,9 @@ public class CollaboratorRepository(ConnectionFactory conn) : BaseRepository(con
             const string sql = @"
                 SELECT id,username,password,name,email,role_id as roleId,avatar,created_at as createdAt,
                 updated_at as updatedAt,deactivated_at as deactivatedAt FROM collaborator 
-                WHERE username = @Username";
+                WHERE username = @username";
 
-            var user = await QueryFirstOrDefaultAsync<Collaborator>(sql, new { Username = username });
+            var user = await QueryFirstOrDefaultAsync<Collaborator>(sql, new { username });
 
             return user is not null
                 ? ResultData<Collaborator>.Success(user)
