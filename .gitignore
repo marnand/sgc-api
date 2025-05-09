@@ -1,6 +1,15 @@
 # Build artifacts
 bin/
 obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
 
 # User-specific files
 *.user
@@ -8,6 +17,7 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+*.userprefs
 
 # Logs
 *.log
@@ -19,6 +29,9 @@ obj/
 # Visual Studio
 .vs/
 .vs/*
+*.cache
+*.dll
+*.pdb
 
 # Rider
 .idea/
@@ -39,6 +52,9 @@ packages/
 # Configuration files
 appsettings.json
 appsettings.*.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.local.json
 
 # Database files
 *.mdf
@@ -58,7 +74,16 @@ coverage/
 # Publish output
 publish/
 wwwroot/
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
 
 # Temporary files
 *.tmp
 *.temp
+*.[Cc]ache
+
+# Build logs
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
