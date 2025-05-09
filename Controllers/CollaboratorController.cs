@@ -1,43 +1,43 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using sgc.Domain.Dtos.User;
+using sgc.Domain.Dtos.Collaborator;
+using sgc.Domain.Entities;
 using sgc.Domain.Entities.Handlers;
 using sgc.Domain.Interfaces.Services;
 using System.Net;
-using LoginRequest = sgc.Domain.Dtos.User.LoginRequest;
 
 namespace sgc.Controllers;
 
 [ApiController]
-[Route("v1/api/user")]
-public class UserController : ControllerBase
+[Route("v1/api/colaborador")]
+public class CollaboratorController : ControllerBase
 {
-    private readonly ILogger<UserController> _logger;
-    private readonly IUserService _userService;
+    private readonly ILogger<CollaboratorController> _logger;
+    private readonly ICollaboratorService _collaboratorService;
 
-    public UserController(ILogger<UserController> logger, IUserService userService)
+    public CollaboratorController(ILogger<CollaboratorController> logger, ICollaboratorService collaboratorService)
     {
         _logger = logger;
-        _userService = userService;
+        _collaboratorService = collaboratorService;
+    }
+
+    [HttpPost()]
+    [AllowAnonymous]
+    public async Task<IActionResult> Register([FromBody] CollaboratorDto request)
+    {
+        var result = await _collaboratorService.Register(request);
+        return result.IsMatch<IActionResult>(Ok, BadRequest);
     }
 
     [HttpGet()]
-    [Authorize]
+    [Authorize(Roles = nameof(RoleEnum.Client))]
     public async Task<IActionResult> GetCurrency()
     {
         var authorizationHeader = HttpContext.Request.Headers["Authorization"].ToString();
         var token = authorizationHeader.Replace("Bearer ", "");
 
-        var result = await _userService.GetByToken(token);
+        var result = await _collaboratorService.GetByToken(token);
         return result.IsMatch(Ok, ErrorHandle);
-    }
-
-    [HttpPost("login")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Login(LoginRequest req)
-    {
-        var result = await _userService.Login(req);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
     }
 
     private IActionResult ErrorHandle(ResultData<GetUserResponse> result)
