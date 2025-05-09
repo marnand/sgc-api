@@ -1,0 +1,64 @@
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# Visual Studio
+.vs/
+.vs/*
+
+# Rider
+.idea/
+.idea/*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/
+packages/
+
+# Environment variables
+.env
+.env.*
+
+# Configuration files
+appsettings.json
+appsettings.*.json
+
+# Database files
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# JetBrains Rider settings
+.idea/
+
+# Coverage reports
+coverage/
+*.coverage
+*.coveragexml
+*.codecov
+
+# Publish output
+publish/
+wwwroot/
+
+# Temporary files
+*.tmp
+*.temp
