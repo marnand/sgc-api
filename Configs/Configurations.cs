@@ -77,14 +77,14 @@ public static class Configurations
     public static void AddMappingServices(this IServiceCollection services)
     {
         services.AddSingleton<ConnectionFactory>();
-        // services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<ICollaboratorService, CollaboratorService>();
     }
 
     public static void AddMappingRepositories(this IServiceCollection services)
     {
         //services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<ITokenHandlers, TokenHandlers>();
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
     }
 }
