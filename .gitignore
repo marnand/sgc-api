@@ -50,7 +50,6 @@ packages/
 .env.*
 
 # Configuration files
-appsettings.json
 appsettings.*.json
 appsettings.Development.json
 appsettings.Production.json
