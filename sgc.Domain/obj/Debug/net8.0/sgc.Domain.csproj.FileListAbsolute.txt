@@ -9,3 +9,15 @@ D:\projetos\ikasa\api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.dll
 D:\projetos\ikasa\api\sgc.Domain\obj\Debug\net8.0\refint\sgc.Domain.dll
 D:\projetos\ikasa\api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.pdb
 D:\projetos\ikasa\api\sgc.Domain\obj\Debug\net8.0\ref\sgc.Domain.dll
+D:\projetos\ikasa\sgc-api\sgc.Domain\bin\Debug\net8.0\sgc.Domain.deps.json
+D:\projetos\ikasa\sgc-api\sgc.Domain\bin\Debug\net8.0\sgc.Domain.dll
+D:\projetos\ikasa\sgc-api\sgc.Domain\bin\Debug\net8.0\sgc.Domain.pdb
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.AssemblyInfoInputs.cache
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.AssemblyInfo.cs
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.csproj.CoreCompileInputs.cache
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.sourcelink.json
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.dll
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\refint\sgc.Domain.dll
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\sgc.Domain.pdb
+D:\projetos\ikasa\sgc-api\sgc.Domain\obj\Debug\net8.0\ref\sgc.Domain.dll

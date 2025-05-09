@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc", "sgc.csproj", "{02AB9389-3E6B-45FF-B1CD-22D31213CCE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc", "sgc\sgc.csproj", "{02AB9389-3E6B-45FF-B1CD-22D31213CCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Infra", "..\sgc.Infra\sgc.Infra.csproj", "{6828748C-1C6F-487C-8913-4115F666E122}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Infra", "sgc.Infra\sgc.Infra.csproj", "{6828748C-1C6F-487C-8913-4115F666E122}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Domain", "..\sgc.Domain\sgc.Domain.csproj", "{379C78AF-521D-4635-8559-45AEDB939424}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Domain", "sgc.Domain\sgc.Domain.csproj", "{379C78AF-521D-4635-8559-45AEDB939424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Application", "..\sgc.Application\sgc.Application.csproj", "{63E99783-29E9-4B9E-80A2-D620544AC1E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sgc.Application", "sgc.Application\sgc.Application.csproj", "{63E99783-29E9-4B9E-80A2-D620544AC1E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
