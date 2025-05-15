@@ -54,7 +54,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("DefaultPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+        policy.WithOrigins("http://localhost:5173", "https://sgc-ikasa.vercel.app/").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
 
