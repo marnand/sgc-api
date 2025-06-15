@@ -65,9 +65,6 @@ public class Collaborator : Entity
         Update();
     }
 
-
-
-
     private bool IsValidUsername(string username)
     {
         if (string.IsNullOrWhiteSpace(username))

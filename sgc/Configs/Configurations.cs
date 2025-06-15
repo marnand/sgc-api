@@ -79,12 +79,13 @@ public static class Configurations
         services.AddSingleton<ConnectionFactory>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<ICollaboratorService, CollaboratorService>();
+        services.AddScoped<ICustomerService, CustomerService>();
     }
 
     public static void AddMappingRepositories(this IServiceCollection services)
     {
-        //services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<ITokenHandlers, TokenHandlers>();
         services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
     }
 }
