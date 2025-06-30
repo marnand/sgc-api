@@ -3,7 +3,7 @@ using sgc.Domain.Entities.Handlers;
 
 namespace sgc.Domain.Interfaces.Repositories;
 
-public interface ICustomerRepository
+public interface ICustomerRepository : IBaseRepository
 {
     Task<ResultData<bool>> Create(Customer customer);
     Task<ResultData<IEnumerable<Customer>>> GetAll();

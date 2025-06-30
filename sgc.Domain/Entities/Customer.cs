@@ -28,8 +28,9 @@ public class Customer : Entity
 
     public ResultData<Customer> Create(CustomerDto dto)
     {
-        var validationContext = new CustomerValidationContext(dto.Name, dto.Type, dto.DocumentType,
-            dto.DocumentNumber, dto.Email, dto.Phone);
+        var validationContext = new CustomerValidationContext(
+            dto.Name, dto.Type, dto.DocumentType, dto.DocumentNumber, dto.Email, dto.Phone
+        );
         var validator = new CustomerValidator();
         var result = validator.Validate(validationContext);
 

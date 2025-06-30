@@ -19,7 +19,7 @@ public class CustomerController : ControllerBase
 
     [HttpPost()]
     [Authorize(Roles = nameof(RoleEnum.Client))]
-    public async Task<IActionResult> Register([FromBody] CustomerDto request)
+    public async Task<IActionResult> Register([FromBody] RegisterCustomerDto request)
     {
         var result = await _customerService.Register(request);
         return result.IsMatch<IActionResult>(Ok, BadRequest);

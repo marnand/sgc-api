@@ -77,15 +77,19 @@ public static class Configurations
     public static void AddMappingServices(this IServiceCollection services)
     {
         services.AddSingleton<ConnectionFactory>();
+        services.AddScoped<IAddressService, AddressService>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IBankDetailsService, BankDetailsService>();
         services.AddScoped<ICollaboratorService, CollaboratorService>();
         services.AddScoped<ICustomerService, CustomerService>();
     }
 
     public static void AddMappingRepositories(this IServiceCollection services)
     {
-        services.AddScoped<ITokenHandlers, TokenHandlers>();
+        services.AddScoped<IAddressRepository, AddressRepository>();
+        services.AddScoped<IBankDetailsRepository, BankDetailsRepository>();
         services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<ITokenHandlers, TokenHandlers>();
     }
 }

@@ -8,6 +8,5 @@ public record class CustomerDto(
     DocumentTypeEnum DocumentType, 
     string DocumentNumber,
     string Email,
-    string Phone,
-    DateTime? DeactivatedAt
+    string Phone
 );

@@ -12,41 +12,99 @@ public abstract class BaseRepository(ConnectionFactory connection)
 
     protected async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null)
     {
-        using var connection = transaction?.Connection ?? _connection.CreateConnection();
-        return await connection.QueryAsync<T>(sql, param, transaction);
+        var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();
+        var shouldDisposeConnection = transaction == null && _currentConnection == null;
+
+        try
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return await conn.QueryAsync<T>(sql, param, transaction ?? _currentTransaction);
+        }
+        finally
+        {
+            if (shouldDisposeConnection)
+                conn?.Dispose();
+        }
     }
 
     protected async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null)
     {
-        using var connection = transaction?.Connection ?? _connection.CreateConnection();
-        return await connection.QueryFirstOrDefaultAsync<T>(sql, param, transaction);
+        var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();
+        var shouldDisposeConnection = transaction == null && _currentConnection == null;
+
+        try
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return await conn.QueryFirstOrDefaultAsync<T>(sql, param, transaction ?? _currentTransaction);
+        }
+        finally
+        {
+            if (shouldDisposeConnection)
+                conn?.Dispose();
+        }
     }
 
     protected async Task<int> ExecuteAsync(string sql, object? param = null, IDbTransaction? transaction = null)
     {
-        using var connection = transaction?.Connection ?? _connection.CreateConnection();
-        return await connection.ExecuteAsync(sql, param, transaction);
+        var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();
+        var shouldDisposeConnection = transaction == null && _currentConnection == null;
+
+        try
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return await conn.ExecuteAsync(sql, param, transaction ?? _currentTransaction);
+        }
+        finally
+        {
+            if (shouldDisposeConnection)
+                conn?.Dispose();
+        }
     }
 
     protected async Task<T> ExecuteScalarAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null)
     {
-        using var connection = transaction?.Connection ?? _connection.CreateConnection();
-        return await connection.ExecuteScalarAsync<T>(sql, param, transaction);
+        var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();
+        var shouldDisposeConnection = transaction == null && _currentConnection == null;
+
+        try
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return await conn.ExecuteScalarAsync<T>(sql, param, transaction ?? _currentTransaction);
+        }
+        finally
+        {
+            if (shouldDisposeConnection)
+                conn?.Dispose();
+        }
     }
 
-    protected void BeginTransaction()
+    public void BeginTransaction()
     {
+        if (_currentTransaction != null)
+            throw new InvalidOperationException("Uma transação já está ativa.");
+
         _currentConnection = _connection.CreateConnection();
+        _currentConnection.Open();
         _currentTransaction = _currentConnection.BeginTransaction();
     }
 
-    protected void JoinTransaction(IDbTransaction transaction)
+    public void JoinTransaction(IDbTransaction transaction)
     {
+        ArgumentNullException.ThrowIfNull(transaction);
+
         _currentTransaction = transaction;
         _currentConnection = transaction.Connection;
     }
 
-    protected void CommitTransaction()
+    public void CommitTransaction()
     {
         try
         {
@@ -54,14 +112,11 @@ public abstract class BaseRepository(ConnectionFactory connection)
         }
         finally
         {
-            _currentTransaction?.Dispose();
-            _currentConnection?.Dispose();
-            _currentTransaction = null;
-            _currentConnection = null;
+            DisposeTransaction();
         }
     }
 
-    protected void RollbackTransaction()
+    public void RollbackTransaction()
     {
         try
         {
@@ -69,12 +124,18 @@ public abstract class BaseRepository(ConnectionFactory connection)
         }
         finally
         {
-            _currentTransaction?.Dispose();
-            _currentConnection?.Dispose();
-            _currentTransaction = null;
-            _currentConnection = null;
+            DisposeTransaction();
         }
     }
 
-    protected IDbTransaction? GetCurrentTransaction() => _currentTransaction;
+    private void DisposeTransaction()
+    {
+        _currentTransaction?.Dispose();
+        _currentConnection?.Dispose();
+        _currentTransaction = null;
+        _currentConnection = null;
+    }
+
+    public IDbTransaction? GetCurrentTransaction() => _currentTransaction;
 }
+
