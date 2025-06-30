@@ -3,6 +3,7 @@ using sgc.Domain.Entities.Handlers;
 using sgc.Domain.Interfaces.Repositories;
 using sgc.Infra.Repositories.Abstraction;
 using sgc.Infra.Security;
+using System.Data;
 using System.Net;
 
 namespace sgc.Infra.Repositories;

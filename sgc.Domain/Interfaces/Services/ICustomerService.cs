@@ -6,6 +6,6 @@ namespace sgc.Domain.Interfaces.Services;
 
 public interface ICustomerService
 {
-    Task<ResultData<bool>> Register(CustomerDto dto);
+    Task<ResultData<bool>> Register(RegisterCustomerDto dto);
     Task<ResultData<IEnumerable<Customer>>> GetAll();
 }

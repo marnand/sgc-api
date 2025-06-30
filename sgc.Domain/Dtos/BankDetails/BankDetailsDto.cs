@@ -3,9 +3,9 @@
 namespace sgc.Domain.Dtos.BankDetails;
 
 public record class BankDetailsDto(
+    Guid? CustomerId,
     string Bank,
     string Agency,
     string Account,
-    AccountTypeEnum AccountType,
-    DateTime? DeactivatedAt
+    AccountTypeEnum AccountType
 );
