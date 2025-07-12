@@ -29,6 +29,25 @@ public abstract class BaseRepository(ConnectionFactory connection)
         }
     }
 
+    protected async Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(string sql, Func<TFirst, TSecond, TThird, TReturn> map, object? param = null, string splitOn = "Id", IDbTransaction? transaction = null)
+    {
+        var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();
+        var shouldDisposeConnection = transaction == null && _currentConnection == null;
+
+        try
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return await conn.QueryAsync(sql, map, param, transaction ?? _currentTransaction, splitOn: splitOn);
+        }
+        finally
+        {
+            if (shouldDisposeConnection)
+                conn?.Dispose();
+        }
+    }
+
     protected async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null)
     {
         var conn = transaction?.Connection ?? _currentConnection ?? _connection.CreateConnection();

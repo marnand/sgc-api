@@ -24,14 +24,21 @@ public class CustomerService : ICustomerService
         _bankDatailsRepository = bankDatailsRepository;
     }
 
-    public async Task<ResultData<bool>> Register(RegisterCustomerDto dto)
+    public async Task<ResultData<bool>> Register(CompleteCustomerDto dto)
     {
-
-        var resultCustomer = new Customer().Create(dto.Customer);
+        var customerDto = new CustomerDto(
+            dto.Name, 
+            dto.Type, 
+            dto.DocumentType, 
+            dto.DocumentNumber, 
+            dto.Email, 
+            dto.Phone
+        );
+        var resultCustomer = new Customer().Create(customerDto);
         if (!resultCustomer.IsSuccess)
             return ResultData<bool>.Failure(resultCustomer.Message, resultCustomer.StatusCode);
 
-        var resultAddress = new Address().Create(dto.Address);
+        var resultAddress = new Address().Create(dto.Address!);
         if (!resultAddress.IsSuccess)
             return ResultData<bool>.Failure(resultAddress.Message, resultAddress.StatusCode);
 
@@ -80,9 +87,6 @@ public class CustomerService : ICustomerService
         return ResultData<bool>.Success(true);
     }
 
-    public async Task<ResultData<IEnumerable<Customer>>> GetAll()
-    {
-        var result = await _customerRepository.GetAll();
-        return result;
-    }
+    public async Task<ResultData<IEnumerable<CompleteCustomerDto>>> GetAllInfo() => 
+        await _customerRepository.GetAllInfo();
 }

@@ -5,6 +5,9 @@ using System.Net;
 
 namespace sgc.Domain.Entities;
 
+// TODO: Adicionar, na classe pai Entity, propriedade Ativo tipo boleano e adicionar condição na tabela para campo único:
+//      - Propriedade DocumentNumber deve ser unique, se o campo Ativo estiver true.
+
 public class Customer : Entity
 {
     public Guid Id { get; private set; }

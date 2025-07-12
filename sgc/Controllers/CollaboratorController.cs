@@ -26,7 +26,7 @@ public class CollaboratorController : ControllerBase
     public async Task<IActionResult> Register([FromBody] CollaboratorDto request)
     {
         var result = await _collaboratorService.Register(request);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
+        return result.ToActionResult();
     }
 
     [HttpGet()]
@@ -37,7 +37,7 @@ public class CollaboratorController : ControllerBase
         var token = authorizationHeader.Replace("Bearer ", "");
 
         var result = await _collaboratorService.GetByToken(token);
-        return result.IsMatch(Ok, ErrorHandle);
+        return result.ToActionResult();
     }
 
     private IActionResult ErrorHandle(ResultData<GetUserResponse> result)

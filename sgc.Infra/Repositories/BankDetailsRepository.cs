@@ -1,4 +1,3 @@
-using System;
 using sgc.Domain.Entities;
 using sgc.Domain.Entities.Handlers;
 using sgc.Domain.Interfaces.Repositories;
@@ -23,6 +22,23 @@ public class BankDetailsRepository(ConnectionFactory conn) : BaseRepository(conn
         {
             return ResultData<bool>.Failure(
                 $"Erro ao criar conta bancária: {ex.Message}",
+                HttpStatusCode.InternalServerError);
+        }
+    }
+
+    public async Task<ResultData<BankDetails?>> GetByCustomerId(Guid customerId)
+    {
+        try
+        {
+            const string sql = @"SELECT id,customer_id as customerId,bank,agency,account,account_type_id as accountType 
+                FROM bank_details WHERE customer_id = @customerId AND deactivated_at IS NULL";
+            var result = await QueryFirstOrDefaultAsync<BankDetails>(sql, new { customerId });
+            return ResultData<BankDetails?>.Success(result);
+        }
+        catch (Exception ex)
+        {
+            return ResultData<BankDetails?>.Failure(
+                $"Erro ao buscar contas bancárias: {ex.Message}",
                 HttpStatusCode.InternalServerError);
         }
     }

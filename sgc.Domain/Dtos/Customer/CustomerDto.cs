@@ -8,5 +8,6 @@ public record class CustomerDto(
     DocumentTypeEnum DocumentType, 
     string DocumentNumber,
     string Email,
-    string Phone
+    string Phone,
+    Guid Id = default
 );

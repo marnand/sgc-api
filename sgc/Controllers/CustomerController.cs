@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using sgc.Domain.Dtos.Customer;
 using sgc.Domain.Entities;
+using sgc.Domain.Entities.Handlers;
 using sgc.Domain.Interfaces.Services;
 
 namespace sgc.Controllers;
@@ -19,9 +20,19 @@ public class CustomerController : ControllerBase
 
     [HttpPost()]
     [Authorize(Roles = nameof(RoleEnum.Client))]
-    public async Task<IActionResult> Register([FromBody] RegisterCustomerDto request)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultData<bool>))]
+    public async Task<IActionResult> Register([FromBody] CompleteCustomerDto request)
     {
         var result = await _customerService.Register(request);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
+        return result.ToActionResult();
+    }
+
+    [HttpGet()]
+    [Authorize(Roles = nameof(RoleEnum.Client))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultData<CompleteCustomerDto>))]
+    public async Task<IActionResult> GetAllInfo()
+    {
+        var result = await _customerService.GetAllInfo();
+        return result.ToActionResult();
     }
 }
