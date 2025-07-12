@@ -5,6 +5,9 @@ using sgc.Domain.EntitiesValidations.BankDetails;
 
 namespace sgc.Domain.Entities;
 
+// TODO: Adicionar, na classe pai Entity, propriedade Ativo tipo boleano e adicionar condição na tabela para campo único:
+//      - Propriedade Bank, Agency, Account deve ser unique, se o campo Ativo estiver true.
+
 public class BankDetails : Entity
 {
     public Guid Id { get; private set; }

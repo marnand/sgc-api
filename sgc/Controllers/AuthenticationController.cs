@@ -24,6 +24,6 @@ public class AuthenticationController : ControllerBase
     public async Task<IActionResult> Login(LoginRequest req)
     {
         var result = await _authenticationService.Login(req);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
+        return result.ToActionResult();
     }
 }

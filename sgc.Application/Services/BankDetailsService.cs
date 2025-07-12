@@ -16,15 +16,13 @@ public class BankDetailsService : IBankDetailsService
         _bankDetailsRepository = bankDetailsRepository;
     }
 
-    public async Task<ResultData<BankDetailsDto>> Register(BankDetailsDto dto)
+    public async Task<ResultData<bool>> Register(BankDetailsDto dto)
     {
         var result = new BankDetails().Create(dto);
         if (!result.IsSuccess)
-            return ResultData<BankDetailsDto>.Failure(result.Message, result.StatusCode);
+            return ResultData<bool>.Failure(result.Message, result.StatusCode);
 
         var resultCreate = await _bankDetailsRepository.Create(result.Data!);
-        return resultCreate.IsSuccess 
-            ? ResultData<BankDetailsDto>.Success(dto)
-            : ResultData<BankDetailsDto>.Failure(resultCreate.Message, resultCreate.StatusCode);
+        return resultCreate;
     }
 }

@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace sgc.Domain.Entities;
 
+// TODO: Adicionar, na classe pai Entity, propriedade Ativo tipo boleano e adicionar condição na tabela para campo único:
+//      - Propriedade Email deve ser unique, se o campo Ativo estiver true.
+
 public class Collaborator : Entity
 {
     private const int MinPasswordLength = 8;

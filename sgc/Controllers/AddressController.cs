@@ -22,6 +22,6 @@ public class AddressController : ControllerBase
     public async Task<IActionResult> Register([FromBody] AddressDto request)
     {
         var result = await _addressService.Register(request);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
+        return result.ToActionResult();
     }
 }

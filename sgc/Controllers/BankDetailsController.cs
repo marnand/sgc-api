@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using sgc.Domain.Dtos.BankDetails;
@@ -23,6 +22,6 @@ public class BankDetailsController : ControllerBase
     public async Task<IActionResult> Register([FromBody] BankDetailsDto request)
     {
         var result = await _bankDetailsService.Register(request);
-        return result.IsMatch<IActionResult>(Ok, BadRequest);
+        return result.ToActionResult();
     }
 }

@@ -5,5 +5,5 @@ namespace sgc.Domain.Interfaces.Services;
 
 public interface IBankDetailsService
 {
-    Task<ResultData<BankDetailsDto>> Register(BankDetailsDto dto);
+    Task<ResultData<bool>> Register(BankDetailsDto dto);
 }
