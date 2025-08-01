@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositorios\**" />
+    <Compile Remove="Seguranca\**" />
+    <EmbeddedResource Remove="Repositorios\**" />
+    <EmbeddedResource Remove="Seguranca\**" />
+    <None Remove="Repositorios\**" />
+    <None Remove="Seguranca\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
 
