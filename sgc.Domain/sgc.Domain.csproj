@@ -7,22 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Entidades\**" />
-    <Compile Remove="Services\**" />
-    <EmbeddedResource Remove="Entidades\**" />
-    <EmbeddedResource Remove="Services\**" />
-    <None Remove="Entidades\**" />
-    <None Remove="Services\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Dtos\Collaborator\CreateCollaboratorRequest.cs" />
-    <Compile Remove="Dtos\Collaborator\CreateRequest.cs" />
-    <Compile Remove="EntitiesValidations\Customer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
   </ItemGroup>
